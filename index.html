@@ -4,9 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Casa Vana — A Coorg Hill Homestay</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Spline+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=gambarino@400&f[]=switzer@300,400,500&display=swap" rel="stylesheet">
 <style>
   :root{
     --dark-green:#243C2C;
@@ -26,7 +25,8 @@
   html{scroll-behavior:smooth;}
 
   body{
-    font-family:'Spline Sans', sans-serif;
+    font-family:'Switzer', sans-serif;
+    font-weight:300;
     color:var(--ink);
     background:var(--cream);
     line-height:1.6;
@@ -34,8 +34,8 @@
   }
 
   h1,h2,h3,h4, .quicksand{
-    font-family:'Quicksand', sans-serif;
-    font-weight:700;
+    font-family:'Gambarino', serif;
+    font-weight:400;
     color:var(--dark-green);
   }
 
@@ -52,7 +52,7 @@
   }
 
   .eyebrow{
-    font-family:'Spline Sans', sans-serif;
+    font-family:'Switzer', sans-serif;
     text-transform:uppercase;
     letter-spacing:0.22em;
     font-size:0.72rem;
@@ -84,7 +84,7 @@
     box-shadow:0 8px 30px -18px rgba(36,60,44,.4);
   }
   .nav-logo{
-    font-family:'Quicksand', sans-serif;
+    font-family:'Gambarino', serif;
     font-weight:700;
     font-size:1.3rem;
     letter-spacing:0.03em;
@@ -216,7 +216,7 @@
   }
   .quote-photo img{width:100%; height:100%; object-fit:cover;}
   .quote-mark{
-    font-family:'Quicksand', sans-serif;
+    font-family:'Gambarino', serif;
     font-size:4rem;
     color:var(--moss);
     line-height:0.5;
@@ -224,7 +224,7 @@
     margin-bottom:1rem;
   }
   blockquote{
-    font-family:'Quicksand', sans-serif;
+    font-family:'Gambarino', serif;
     font-weight:500;
     font-size:clamp(1.3rem, 2.4vw, 1.9rem);
     line-height:1.45;
@@ -241,7 +241,7 @@
   .script-line{
     text-align:center;
     padding:4.5rem 6vw 2rem;
-    font-family:'Quicksand', sans-serif;
+    font-family:'Gambarino', serif;
     font-weight:500;
     font-style:italic;
     font-size:clamp(1.4rem, 3vw, 2.1rem);
@@ -311,7 +311,7 @@
     border-bottom:1px solid rgba(36,60,44,0.1);
   }
   .cta-strip p{
-    font-family:'Quicksand', sans-serif;
+    font-family:'Gambarino', serif;
     font-weight:600;
     font-size:1.3rem;
     color:var(--dark-green);
@@ -381,7 +381,7 @@
   .about-img.a{width:68%; height:70%; top:0; left:0; z-index:2;}
   .about-img.b{width:52%; height:52%; bottom:0; right:0; border:8px solid var(--cream); z-index:3;}
   .about-text .lead{
-    font-family:'Quicksand', sans-serif;
+    font-family:'Gambarino', serif;
     font-weight:600;
     font-size:1.4rem;
     color:var(--dark-green);
@@ -398,7 +398,7 @@
   }
   .about-stats div strong{
     display:block;
-    font-family:'Quicksand', sans-serif;
+    font-family:'Gambarino', serif;
     font-size:1.8rem;
     color:var(--moss);
   }
@@ -475,7 +475,7 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    font-family:'Quicksand', sans-serif;
+    font-family:'Gambarino', serif;
     font-weight:700;
     font-size:1rem;
     z-index:2;
@@ -605,7 +605,7 @@
     border-radius:6px;
     padding:0.85rem 1rem;
     color:var(--cream);
-    font-family:'Spline Sans', sans-serif;
+    font-family:'Switzer', sans-serif;
     font-size:0.92rem;
   }
   .field input::placeholder, .field textarea::placeholder{color:rgba(251,249,239,0.4);}
@@ -679,12 +679,12 @@
     border-bottom:1px solid rgba(251,249,239,0.12);
   }
   .footer-logo{
-    font-family:'Quicksand', sans-serif;
+    font-family:'Gambarino', serif;
     font-weight:700;
     font-size:1.5rem;
     color:var(--cream);
   }
-  .footer-logo span{display:block; font-family:'Spline Sans', sans-serif; font-weight:300; font-size:0.8rem; color:var(--powder); margin-top:0.3rem;}
+  .footer-logo span{display:block; font-family:'Switzer', sans-serif; font-weight:300; font-size:0.8rem; color:var(--powder); margin-top:0.3rem;}
   .footer-nav{
     display:flex;
     gap:2.4rem;
@@ -715,6 +715,74 @@
     .reveal{opacity:1; transform:none;}
   }
 
+  /* ============ PRELOADER ============ */
+  .preloader{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    background:var(--dark-green);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:opacity .9s var(--ease), visibility .9s var(--ease);
+  }
+  .preloader.hidden{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+  .preloader-mark{
+    display:flex;
+    align-items:center;
+    gap:0.9rem;
+    opacity:0;
+    transform:translateY(10px);
+    animation:markIn 1s var(--ease) .15s forwards;
+  }
+  @keyframes markIn{
+    to{opacity:1; transform:translateY(0);}
+  }
+  .preloader-initials{
+    font-family:'Gambarino', serif;
+    font-weight:400;
+    font-size:3.6rem;
+    color:var(--vanilla);
+    line-height:1;
+    letter-spacing:0.01em;
+  }
+  .preloader-tree{
+    width:38px;
+    height:52px;
+    color:var(--moss);
+    flex-shrink:0;
+  }
+  .preloader-tree path, .preloader-tree line{
+    stroke-dasharray:120;
+    stroke-dashoffset:120;
+    animation:drawTree 1.4s var(--ease) .3s forwards;
+  }
+  @keyframes drawTree{
+    to{stroke-dashoffset:0;}
+  }
+  .preloader-caption{
+    position:absolute;
+    bottom:3rem;
+    left:50%;
+    transform:translateX(-50%);
+    font-family:'Switzer', sans-serif;
+    font-weight:300;
+    font-size:0.72rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--powder);
+    opacity:0;
+    animation:markIn 1s var(--ease) .5s forwards;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .preloader-mark, .preloader-caption{animation:none; opacity:1; transform:none;}
+    .preloader-tree path, .preloader-tree line{animation:none; stroke-dashoffset:0;}
+  }
+
   /* ============ RESPONSIVE ============ */
   @media (max-width:900px){
     .nav-links{display:none;}
@@ -740,6 +808,19 @@
 </style>
 </head>
 <body>
+
+  <!-- ============ PRELOADER ============ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-mark">
+      <span class="preloader-initials">CV</span>
+      <svg class="preloader-tree" viewBox="0 0 30 44" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 4 L4 20 H10 L2 32 H13"/>
+        <path d="M15 4 L26 20 H20 L28 32 H17"/>
+        <line x1="15" y1="20" x2="15" y2="42"/>
+      </svg>
+    </div>
+    <span class="preloader-caption">Casa Vana</span>
+  </div>
 
   <!-- ============ NAV ============ -->
   <nav class="nav" id="nav">
@@ -1062,7 +1143,7 @@
           <button type="submit" class="btn">Send Enquiry</button>
           <p class="form-note">This is a demo form — no booking is actually submitted.</p>
         </form>
-        <div id="form-success" style="display:none; color:var(--vanilla); font-family:'Quicksand',sans-serif; font-size:1.2rem;">
+        <div id="form-success" style="display:none; color:var(--vanilla); font-family:'Gambarino', serif; font-size:1.2rem;">
           Thank you — your enquiry has been noted. We'll write back shortly.
         </div>
       </div>
@@ -1131,6 +1212,15 @@
   </footer>
 
 <script>
+  // Preloader — lock scroll, show for a minimum beat, then reveal the page
+  document.body.style.overflow = 'hidden';
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('preloader').classList.add('hidden');
+      document.body.style.overflow = '';
+    }, 1200);
+  });
+
   // Nav background on scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
