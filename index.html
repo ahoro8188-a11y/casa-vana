@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa Vana — A Coorg Hill Homestay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Spline+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --dark-green:#243C2C;
+    --moss:#7A9445;
+    --vanilla:#ECE69D;
+    --glaucous:#59789F;
+    --powder:#A9B6C4;
+    --cream:#FBF9EF;
+    --ink:#20281F;
+    --paper:#F4F0DE;
+    --shadow: 0 20px 50px -20px rgba(36,60,44,0.35);
+    --ease: cubic-bezier(.4,0,.2,1);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Spline Sans', sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,h4, .quicksand{
+    font-family:'Quicksand', sans-serif;
+    font-weight:700;
+    color:var(--dark-green);
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  section{position:relative;}
+
+  ::selection{background:var(--moss); color:var(--cream);}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:3px solid var(--glaucous);
+    outline-offset:3px;
+  }
+
+  .eyebrow{
+    font-family:'Spline Sans', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.22em;
+    font-size:0.72rem;
+    font-weight:500;
+    color:var(--moss);
+  }
+
+  .wrap{
+    max-width:1240px;
+    margin:0 auto;
+    padding:0 6vw;
+  }
+
+  /* ============ NAV ============ */
+  .nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:1.6rem 6vw;
+    transition:background .4s var(--ease), padding .4s var(--ease), box-shadow .4s var(--ease);
+  }
+  .nav.scrolled{
+    background:rgba(251,249,239,0.92);
+    backdrop-filter: blur(10px);
+    padding:1rem 6vw;
+    box-shadow:0 8px 30px -18px rgba(36,60,44,.4);
+  }
+  .nav-logo{
+    font-family:'Quicksand', sans-serif;
+    font-weight:700;
+    font-size:1.3rem;
+    letter-spacing:0.03em;
+    color:var(--cream);
+    transition:color .4s var(--ease);
+  }
+  .nav.scrolled .nav-logo{color:var(--dark-green);}
+  .nav-links{
+    display:flex;
+    gap:2.2rem;
+    list-style:none;
+  }
+  .nav-links a{
+    font-size:0.85rem;
+    letter-spacing:0.04em;
+    color:rgba(251,249,239,0.92);
+    position:relative;
+    padding-bottom:4px;
+    transition:color .4s var(--ease);
+  }
+  .nav.scrolled .nav-links a{color:var(--dark-green);}
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0; bottom:0;
+    width:0; height:1.5px;
+    background:currentColor;
+    transition:width .3s var(--ease);
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    font-size:0.78rem;
+    letter-spacing:0.05em;
+    padding:0.65rem 1.4rem;
+    border:1.5px solid var(--cream);
+    border-radius:100px;
+    color:var(--cream);
+    transition:all .4s var(--ease);
+  }
+  .nav.scrolled .nav-cta{border-color:var(--dark-green); color:var(--dark-green);}
+  .nav-cta:hover{background:var(--vanilla); border-color:var(--vanilla); color:var(--dark-green);}
+  .nav-toggle{display:none;}
+
+  /* ============ HERO ============ */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    position:relative;
+    background:
+      linear-gradient(180deg, rgba(20,30,20,0.35) 0%, rgba(20,28,20,0.15) 35%, rgba(18,26,18,0.75) 100%),
+      url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+    color:var(--cream);
+    padding-bottom:5rem;
+  }
+  .hero-inner{
+    padding:0 6vw;
+  }
+  .hero-eyebrow{
+    font-size:0.78rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--vanilla);
+    margin-bottom:1.2rem;
+    display:flex;
+    align-items:center;
+    gap:0.8rem;
+  }
+  .hero-eyebrow::before{
+    content:'';
+    width:40px; height:1px;
+    background:var(--vanilla);
+  }
+  .hero h1{
+    font-size:clamp(3.4rem, 11vw, 9rem);
+    line-height:0.92;
+    color:var(--cream);
+    letter-spacing:-0.01em;
+    text-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  }
+  .hero-sub{
+    max-width:480px;
+    margin-top:1.6rem;
+    font-size:1.05rem;
+    font-weight:300;
+    color:rgba(251,249,239,0.9);
+  }
+  .hero-scroll{
+    position:absolute;
+    right:6vw; bottom:2.5rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0.6rem;
+    font-size:0.7rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--cream);
+  }
+  .hero-scroll .line{
+    width:1px; height:48px;
+    background:linear-gradient(var(--cream), transparent);
+    animation:scrollpulse 2.2s infinite var(--ease);
+  }
+  @keyframes scrollpulse{
+    0%{transform:scaleY(0); transform-origin:top;}
+    50%{transform:scaleY(1); transform-origin:top;}
+    50.1%{transform-origin:bottom;}
+    100%{transform:scaleY(0); transform-origin:bottom;}
+  }
+
+  /* ============ QUOTE BLOCK ============ */
+  .quote-section{
+    background:var(--dark-green);
+    color:var(--cream);
+    padding:6rem 6vw;
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:3.5rem;
+    align-items:center;
+  }
+  .quote-photo{
+    width:220px; height:220px;
+    border-radius:6px;
+    overflow:hidden;
+    border:6px solid rgba(251,249,239,0.08);
+    box-shadow:var(--shadow);
+  }
+  .quote-photo img{width:100%; height:100%; object-fit:cover;}
+  .quote-mark{
+    font-family:'Quicksand', sans-serif;
+    font-size:4rem;
+    color:var(--moss);
+    line-height:0.5;
+    display:block;
+    margin-bottom:1rem;
+  }
+  blockquote{
+    font-family:'Quicksand', sans-serif;
+    font-weight:500;
+    font-size:clamp(1.3rem, 2.4vw, 1.9rem);
+    line-height:1.45;
+    max-width:720px;
+  }
+  .quote-attribution{
+    margin-top:1.5rem;
+    font-size:0.85rem;
+    color:var(--powder);
+    letter-spacing:0.03em;
+  }
+
+  /* ============ SCRIPT ACCENT ============ */
+  .script-line{
+    text-align:center;
+    padding:4.5rem 6vw 2rem;
+    font-family:'Quicksand', sans-serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:clamp(1.4rem, 3vw, 2.1rem);
+    color:var(--moss);
+    letter-spacing:0.01em;
+  }
+
+  /* ============ CAROUSEL ============ */
+  .carousel-section{padding:0 0 6rem;}
+  .carousel{
+    position:relative;
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    gap:1.2rem;
+    padding:0 6vw;
+    scrollbar-width:none;
+  }
+  .carousel::-webkit-scrollbar{display:none;}
+  .carousel-slide{
+    scroll-snap-align:start;
+    flex:0 0 auto;
+    width:min(76vw, 620px);
+    height:56vh;
+    border-radius:10px;
+    overflow:hidden;
+    position:relative;
+    box-shadow:var(--shadow);
+  }
+  .carousel-slide img{width:100%; height:100%; object-fit:cover; transition:transform .6s var(--ease);}
+  .carousel-slide:hover img{transform:scale(1.05);}
+  .carousel-cap{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:1.4rem 1.6rem;
+    background:linear-gradient(0deg, rgba(20,28,20,0.75), transparent);
+    color:var(--cream);
+    font-size:0.85rem;
+    letter-spacing:0.05em;
+  }
+  .carousel-nav{
+    display:flex; justify-content:flex-end;
+    gap:0.8rem;
+    padding:1.4rem 6vw 0;
+  }
+  .carousel-nav button{
+    width:44px; height:44px;
+    border-radius:50%;
+    border:1.5px solid var(--dark-green);
+    background:transparent;
+    color:var(--dark-green);
+    cursor:pointer;
+    font-size:1.1rem;
+    transition:all .3s var(--ease);
+  }
+  .carousel-nav button:hover{background:var(--dark-green); color:var(--cream);}
+
+  /* ============ CTA STRIP ============ */
+  .cta-strip{
+    background:var(--vanilla);
+    padding:3.2rem 6vw;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:1.5rem;
+    border-top:1px solid rgba(36,60,44,0.1);
+    border-bottom:1px solid rgba(36,60,44,0.1);
+  }
+  .cta-strip p{
+    font-family:'Quicksand', sans-serif;
+    font-weight:600;
+    font-size:1.3rem;
+    color:var(--dark-green);
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:0.6rem;
+    padding:0.95rem 2rem;
+    background:var(--dark-green);
+    color:var(--cream);
+    border-radius:100px;
+    font-size:0.85rem;
+    letter-spacing:0.05em;
+    border:none;
+    cursor:pointer;
+    transition:all .35s var(--ease);
+  }
+  .btn:hover{background:var(--moss); transform:translateY(-2px);}
+  .btn-outline{
+    background:transparent;
+    border:1.5px solid var(--dark-green);
+    color:var(--dark-green);
+  }
+  .btn-outline:hover{background:var(--dark-green); color:var(--cream);}
+
+  /* ============ SECTION HEADERS ============ */
+  .section-head{
+    max-width:640px;
+    margin-bottom:4rem;
+  }
+  .section-head h2{
+    font-size:clamp(2.2rem, 4.5vw, 3.4rem);
+    line-height:1.05;
+    margin-top:0.8rem;
+  }
+  .section-head p{
+    margin-top:1.2rem;
+    font-size:1.02rem;
+    color:#4a5647;
+    max-width:520px;
+  }
+  .center{text-align:center; margin-left:auto; margin-right:auto;}
+
+  /* ============ ABOUT / STORY ============ */
+  .about{
+    padding:8rem 0;
+    background:var(--cream);
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:4rem;
+    align-items:center;
+  }
+  .about-images{
+    position:relative;
+    height:520px;
+  }
+  .about-img{
+    position:absolute;
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .about-img img{width:100%; height:100%; object-fit:cover;}
+  .about-img.a{width:68%; height:70%; top:0; left:0; z-index:2;}
+  .about-img.b{width:52%; height:52%; bottom:0; right:0; border:8px solid var(--cream); z-index:3;}
+  .about-text .lead{
+    font-family:'Quicksand', sans-serif;
+    font-weight:600;
+    font-size:1.4rem;
+    color:var(--dark-green);
+    margin-bottom:1.2rem;
+    line-height:1.35;
+  }
+  .about-text p{color:#4a5647; margin-bottom:1rem;}
+  .about-stats{
+    display:flex;
+    gap:2.5rem;
+    margin-top:2rem;
+    padding-top:2rem;
+    border-top:1px solid rgba(36,60,44,0.15);
+  }
+  .about-stats div strong{
+    display:block;
+    font-family:'Quicksand', sans-serif;
+    font-size:1.8rem;
+    color:var(--moss);
+  }
+  .about-stats div span{
+    font-size:0.78rem;
+    letter-spacing:0.04em;
+    color:#6a7566;
+    text-transform:uppercase;
+  }
+
+  /* ============ ROOMS / TRAIL ============ */
+  .rooms{
+    padding:8rem 0 4rem;
+    background:var(--paper);
+    position:relative;
+    overflow:hidden;
+  }
+  .trail-svg{
+    position:absolute;
+    top:280px; left:0;
+    width:100%;
+    height:calc(100% - 400px);
+    z-index:0;
+    pointer-events:none;
+  }
+  .trail-path{
+    fill:none;
+    stroke:var(--moss);
+    stroke-width:3;
+    stroke-dasharray:2 14;
+    stroke-linecap:round;
+    opacity:0.55;
+  }
+  .room-row{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:4rem;
+    align-items:center;
+    margin-bottom:6rem;
+  }
+  .room-row:nth-child(even) .room-photo{order:2;}
+  .room-row:nth-child(even) .room-copy{order:1; text-align:right;}
+  .room-row:nth-child(even) .room-copy .room-meta{justify-content:flex-end;}
+  .room-photo{
+    position:relative;
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .room-photo img{
+    width:100%;
+    aspect-ratio:4/3.1;
+    object-fit:cover;
+    /* torn paper edge effect */
+    clip-path: polygon(
+      1% 3%, 8% 0%, 17% 2%, 26% 0.5%, 35% 2.5%, 44% 0%, 53% 2%, 62% 0.5%,
+      71% 2.5%, 80% 0%, 89% 2%, 99% 0.5%,
+      100% 8%, 98% 18%, 100% 28%, 99% 38%, 100% 48%, 98% 58%, 100% 68%,
+      99% 78%, 100% 88%, 98% 97%,
+      92% 100%, 83% 98%, 74% 100%, 65% 98.5%, 56% 100%, 47% 98%, 38% 100%,
+      29% 98.5%, 20% 100%, 11% 98%, 2% 100%,
+      0% 92%, 2% 82%, 0% 72%, 1% 62%, 0% 52%, 2% 42%, 0% 32%, 1% 22%, 0% 12%
+    );
+    box-shadow:0 25px 45px -20px rgba(36,60,44,0.4);
+  }
+  .room-number{
+    position:absolute;
+    top:-14px; left:-14px;
+    width:56px; height:56px;
+    border-radius:50%;
+    background:var(--dark-green);
+    color:var(--vanilla);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Quicksand', sans-serif;
+    font-weight:700;
+    font-size:1rem;
+    z-index:2;
+    box-shadow:0 10px 25px -8px rgba(36,60,44,0.5);
+  }
+  .room-row:nth-child(even) .room-number{left:auto; right:-14px;}
+  .room-copy .room-tag{
+    display:inline-block;
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--glaucous);
+    margin-bottom:0.8rem;
+  }
+  .room-copy h3{
+    font-size:2rem;
+    margin-bottom:0.9rem;
+  }
+  .room-copy p{color:#4a5647; margin-bottom:1.2rem; max-width:420px;}
+  .room-row:nth-child(even) .room-copy p{margin-left:auto;}
+  .room-meta{
+    display:flex;
+    gap:1.6rem;
+    flex-wrap:wrap;
+  }
+  .room-meta span{
+    font-size:0.78rem;
+    color:var(--dark-green);
+    display:flex;
+    align-items:center;
+    gap:0.4rem;
+  }
+  .room-meta span::before{
+    content:'';
+    width:5px; height:5px;
+    border-radius:50%;
+    background:var(--moss);
+  }
+
+  /* ============ AMENITIES ============ */
+  .amenities{
+    padding:4rem 0 8rem;
+    background:var(--paper);
+  }
+  .amenity-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:rgba(36,60,44,0.14);
+    border:1px solid rgba(36,60,44,0.14);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .amenity-card{
+    background:var(--cream);
+    padding:2.4rem 1.8rem;
+    transition:background .35s var(--ease);
+  }
+  .amenity-card:hover{background:var(--vanilla);}
+  .amenity-icon{
+    width:44px; height:44px;
+    margin-bottom:1.2rem;
+    color:var(--dark-green);
+  }
+  .amenity-card h4{
+    font-size:1rem;
+    margin-bottom:0.5rem;
+  }
+  .amenity-card p{
+    font-size:0.85rem;
+    color:#5a6656;
+  }
+
+  /* ============ BOOKING ============ */
+  .booking{
+    padding:8rem 0;
+    background:var(--dark-green);
+    color:var(--cream);
+  }
+  .booking .section-head h2, .booking .eyebrow{color:var(--cream);}
+  .booking .eyebrow{color:var(--vanilla);}
+  .booking .section-head p{color:var(--powder);}
+  .booking-grid{
+    display:grid;
+    grid-template-columns:1fr 1.1fr;
+    gap:4rem;
+    align-items:start;
+  }
+  .booking-side{
+    height:100%;
+    min-height:480px;
+    border-radius:10px;
+    overflow:hidden;
+    position:relative;
+  }
+  .booking-side img{width:100%; height:100%; object-fit:cover; min-height:480px;}
+  .booking-side::after{
+    content:'From ₹8,500 / night · whole property';
+    position:absolute; left:1.6rem; bottom:1.6rem;
+    background:rgba(36,60,44,0.85);
+    color:var(--vanilla);
+    padding:0.7rem 1.2rem;
+    border-radius:6px;
+    font-size:0.82rem;
+    letter-spacing:0.02em;
+  }
+  .form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1.2rem;
+  }
+  .form-grid .full{grid-column:1/-1;}
+  .field{
+    display:flex;
+    flex-direction:column;
+    gap:0.5rem;
+  }
+  .field label{
+    font-size:0.75rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--powder);
+  }
+  .field input, .field textarea{
+    background:rgba(251,249,239,0.06);
+    border:1px solid rgba(251,249,239,0.25);
+    border-radius:6px;
+    padding:0.85rem 1rem;
+    color:var(--cream);
+    font-family:'Spline Sans', sans-serif;
+    font-size:0.92rem;
+  }
+  .field input::placeholder, .field textarea::placeholder{color:rgba(251,249,239,0.4);}
+  .field input:focus, .field textarea:focus{
+    border-color:var(--moss);
+    outline:none;
+    background:rgba(251,249,239,0.1);
+  }
+  .booking-form .btn{margin-top:0.6rem;}
+  .form-note{
+    margin-top:1rem;
+    font-size:0.78rem;
+    color:var(--powder);
+  }
+
+  /* ============ CONTACT / MAP ============ */
+  .contact{
+    padding:8rem 0;
+    background:var(--cream);
+  }
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:4rem;
+  }
+  .map-frame{
+    border-radius:10px;
+    overflow:hidden;
+    height:460px;
+    border:1px solid rgba(36,60,44,0.15);
+    box-shadow:var(--shadow);
+  }
+  .map-frame iframe{width:100%; height:100%; border:0; filter:saturate(0.85) contrast(1.02);}
+  .contact-list{
+    display:flex;
+    flex-direction:column;
+    gap:2rem;
+    margin-top:1rem;
+  }
+  .contact-item{
+    display:flex;
+    gap:1.2rem;
+  }
+  .contact-item .ic{
+    width:42px; height:42px;
+    border-radius:50%;
+    background:var(--vanilla);
+    color:var(--dark-green);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .contact-item h4{font-size:1rem; margin-bottom:0.3rem;}
+  .contact-item p, .contact-item a{color:#4a5647; font-size:0.92rem;}
+  .contact-item a:hover{color:var(--moss);}
+
+  /* ============ FOOTER ============ */
+  footer{
+    background:var(--dark-green);
+    color:var(--powder);
+    padding:3.5rem 6vw 2rem;
+  }
+  .footer-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:2rem;
+    padding-bottom:2.5rem;
+    border-bottom:1px solid rgba(251,249,239,0.12);
+  }
+  .footer-logo{
+    font-family:'Quicksand', sans-serif;
+    font-weight:700;
+    font-size:1.5rem;
+    color:var(--cream);
+  }
+  .footer-logo span{display:block; font-family:'Spline Sans', sans-serif; font-weight:300; font-size:0.8rem; color:var(--powder); margin-top:0.3rem;}
+  .footer-nav{
+    display:flex;
+    gap:2.4rem;
+    list-style:none;
+    flex-wrap:wrap;
+  }
+  .footer-nav a{font-size:0.85rem; color:var(--powder); transition:color .3s;}
+  .footer-nav a:hover{color:var(--vanilla);}
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    padding-top:1.6rem;
+    font-size:0.78rem;
+    flex-wrap:wrap;
+    gap:1rem;
+  }
+
+  /* ============ REVEAL ANIM ============ */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .8s var(--ease), transform .8s var(--ease);
+  }
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+    .reveal{opacity:1; transform:none;}
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:900px){
+    .nav-links{display:none;}
+    .quote-section{grid-template-columns:1fr; text-align:center;}
+    .quote-photo{margin:0 auto; width:160px; height:160px;}
+    .about-grid, .booking-grid, .contact-grid{grid-template-columns:1fr;}
+    .about-images{height:380px; margin-bottom:1rem;}
+    .room-row, .room-row:nth-child(even){grid-template-columns:1fr; text-align:left !important;}
+    .room-row:nth-child(even) .room-photo{order:0;}
+    .room-row:nth-child(even) .room-copy{order:1; text-align:left !important;}
+    .room-row:nth-child(even) .room-copy .room-meta{justify-content:flex-start;}
+    .room-row:nth-child(even) .room-copy p{margin-left:0;}
+    .amenity-grid{grid-template-columns:repeat(2,1fr);}
+    .form-grid{grid-template-columns:1fr;}
+    .trail-svg{display:none;}
+  }
+  @media (max-width:560px){
+    .hero h1{font-size:clamp(2.6rem, 14vw, 4rem);}
+    .cta-strip{flex-direction:column; align-items:flex-start;}
+    .amenity-grid{grid-template-columns:1fr;}
+    .about-stats{flex-direction:column; gap:1rem;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav" id="nav">
+    <a href="#home" class="nav-logo">Casa Vana</a>
+    <ul class="nav-links">
+      <li><a href="#story">Story</a></li>
+      <li><a href="#stay">The Stay</a></li>
+      <li><a href="#amenities">Amenities</a></li>
+      <li><a href="#book">Book</a></li>
+      <li><a href="#find-us">Find Us</a></li>
+    </ul>
+    <a href="#book" class="nav-cta">Check Availability</a>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Coorg, Karnataka</div>
+      <h1>Casa<br>Vana</h1>
+      <p class="hero-sub">A three-bedroom homestay tucked into the coffee hills of Coorg — where the mist arrives before breakfast and leaves after dark.</p>
+    </div>
+    <div class="hero-scroll"><span>Scroll</span><span class="line"></span></div>
+  </section>
+
+  <!-- ============ QUOTE ============ -->
+  <section class="quote-section reveal">
+    <div class="quote-photo">
+      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=500&q=80" alt="Portrait of Meera, host at Casa Vana">
+    </div>
+    <div>
+      <span class="quote-mark">"</span>
+      <blockquote>We built Casa Vana the way we'd want a hill house to feel — unhurried, a little wild at the edges, and always smelling of coffee and woodsmoke.</blockquote>
+      <p class="quote-attribution">— Meera &amp; Arjun, your hosts</p>
+    </div>
+  </section>
+
+  <p class="script-line reveal">come wander in, the hills are waiting</p>
+
+  <!-- ============ CAROUSEL ============ -->
+  <section class="carousel-section reveal">
+    <div class="carousel" id="carousel">
+      <div class="carousel-slide">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1000&q=80" alt="Misty hills surrounding the property">
+        <div class="carousel-cap">The view from the verandah, most mornings</div>
+      </div>
+      <div class="carousel-slide">
+        <img src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=1000&q=80" alt="Wooden cabin exterior among pines">
+        <div class="carousel-cap">Casa Vana, as the light drops</div>
+      </div>
+      <div class="carousel-slide">
+        <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1000&q=80" alt="Coffee plantation surrounding the homestay">
+        <div class="carousel-cap">Our coffee estate, right outside the gate</div>
+      </div>
+      <div class="carousel-slide">
+        <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&w=1000&q=80" alt="Bonfire set up for evening gatherings">
+        <div class="carousel-cap">Bonfires, most evenings after 7</div>
+      </div>
+      <div class="carousel-slide">
+        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1000&q=80" alt="Cozy bedroom interior with warm lighting">
+        <div class="carousel-cap">One of three bedrooms, made up for you</div>
+      </div>
+      <div class="carousel-slide">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1000&q=80" alt="Sweeping mountain range at golden hour">
+        <div class="carousel-cap">Twenty minutes to the nearest viewpoint</div>
+      </div>
+    </div>
+    <div class="carousel-nav">
+      <button aria-label="Scroll left" id="carLeft">&#8592;</button>
+      <button aria-label="Scroll right" id="carRight">&#8594;</button>
+    </div>
+  </section>
+
+  <!-- ============ CTA STRIP ============ -->
+  <div class="cta-strip reveal">
+    <p>Three bedrooms. One hillside. Entirely yours.</p>
+    <a href="#book" class="btn">Check Availability</a>
+  </div>
+
+  <!-- ============ ABOUT / STORY ============ -->
+  <section class="about" id="story">
+    <div class="wrap about-grid">
+      <div class="about-images reveal">
+        <div class="about-img a">
+          <img src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=900&q=80" alt="Casa Vana homestay nestled among trees">
+        </div>
+        <div class="about-img b">
+          <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=700&q=80" alt="Coffee estate pathway near the property">
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <span class="eyebrow">Our Story</span>
+        <p class="lead">A family coffee estate, opened up as a home for travellers.</p>
+        <p>Casa Vana sits on a slope of the same coffee estate our family has tended for three generations, an hour outside Madikeri. When the old plantation bungalow needed new life, we rebuilt it slowly — keeping the wide verandah, the wood-fired kitchen, and the silence.</p>
+        <p>Today it holds three bedrooms, one kitchen the whole house gathers around, and a view of the Western Ghats that changes every hour. We host one group at a time — the whole property is yours, not shared with strangers down the hall.</p>
+        <div class="about-stats">
+          <div><strong>3</strong><span>Bedrooms</span></div>
+          <div><strong>2</strong><span>Bathrooms</span></div>
+          <div><strong>6</strong><span>Guests, max</span></div>
+          <div><strong>4</strong><span>Acres, coffee &amp; shade</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ROOMS / TRAIL ============ -->
+  <section class="rooms" id="stay">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">The Stay</span>
+        <h2>Every room, mapped along the hillside</h2>
+        <p>Three bedrooms, two bathrooms, a kitchen built for slow mornings, and a living room that never quite empties out. Here's what's inside.</p>
+      </div>
+    </div>
+
+    <svg class="trail-svg" viewBox="0 0 1000 2600" preserveAspectRatio="none" aria-hidden="true">
+      <path class="trail-path" d="M 850 0 C 600 150, 550 250, 700 380 S 900 550, 750 700 C 550 850, 200 900, 150 1080 S 300 1350, 550 1420 C 750 1480, 880 1600, 750 1780 S 400 1950, 250 2100 C 150 2200, 300 2350, 550 2450 S 850 2550, 800 2600" />
+    </svg>
+
+    <div class="wrap">
+      <div class="room-row reveal">
+        <div class="room-photo">
+          <span class="room-number">01</span>
+          <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80" alt="Mountain View Bedroom with large window">
+        </div>
+        <div class="room-copy">
+          <span class="room-tag">Bedroom One</span>
+          <h3>The Mountain View Room</h3>
+          <p>The largest of the three, with a bay window angled straight at the Ghats. First light lands on the bed by 6am.</p>
+          <div class="room-meta">
+            <span>King bed</span>
+            <span>En-suite</span>
+            <span>Reading nook</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-row reveal">
+        <div class="room-photo">
+          <span class="room-number">02</span>
+          <img src="https://images.unsplash.com/photo-1595576508898-0ad5c879a061?auto=format&fit=crop&w=900&q=80" alt="Garden View Bedroom with soft natural light">
+        </div>
+        <div class="room-copy">
+          <span class="room-tag">Bedroom Two</span>
+          <h3>The Garden View Room</h3>
+          <p>Opens onto the coffee shrubs and a stand of silver oak. Quieter, cooler, and closest to the garden bathroom.</p>
+          <div class="room-meta">
+            <span>Queen bed</span>
+            <span>Garden access</span>
+            <span>Writing desk</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-row reveal">
+        <div class="room-photo">
+          <span class="room-number">03</span>
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80" alt="Attic Loft Bedroom under sloped wooden ceiling">
+        </div>
+        <div class="room-copy">
+          <span class="room-tag">Bedroom Three</span>
+          <h3>The Attic Loft</h3>
+          <p>Tucked under the sloped roof with exposed beams — a little smaller, well loved by kids and light sleepers alike.</p>
+          <div class="room-meta">
+            <span>Twin beds</span>
+            <span>Skylight</span>
+            <span>Shared bath</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-row reveal">
+        <div class="room-photo">
+          <span class="room-number">04</span>
+          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80" alt="Living room with fireplace and wooden furniture">
+        </div>
+        <div class="room-copy">
+          <span class="room-tag">Common Space</span>
+          <h3>The Living Room</h3>
+          <p>Low wooden furniture, a wood-burning stove, and the only room in the house where the wifi actually behaves.</p>
+          <div class="room-meta">
+            <span>Fireplace</span>
+            <span>Board games</span>
+            <span>Reading library</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-row reveal">
+        <div class="room-photo">
+          <span class="room-number">05</span>
+          <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=900&q=80" alt="Kitchen and dining area with rustic wooden table">
+        </div>
+        <div class="room-copy">
+          <span class="room-tag">Common Space</span>
+          <h3>Kitchen &amp; Dining</h3>
+          <p>A working wood-fired kitchen alongside a full modern one, and a table long enough for the whole party.</p>
+          <div class="room-meta">
+            <span>Full kitchen</span>
+            <span>Dining for 6</span>
+            <span>Filter coffee, always</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-row reveal">
+        <div class="room-photo">
+          <span class="room-number">06</span>
+          <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=900&q=80" alt="Bathroom with natural stone and greenery">
+        </div>
+        <div class="room-copy">
+          <span class="room-tag">Two Bathrooms</span>
+          <h3>The Bath Houses</h3>
+          <p>Stone floors, hot water on a wood boiler, and one with a window that opens straight onto the hillside.</p>
+          <div class="room-meta">
+            <span>Hot water</span>
+            <span>Rain shower</span>
+            <span>Garden window</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AMENITIES ============ -->
+  <section class="amenities" id="amenities">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Amenities</span>
+        <h2>What comes with the stay</h2>
+        <p>Nothing you'll be charged extra for — this is what's already here when you arrive.</p>
+      </div>
+      <div class="amenity-grid reveal">
+        <div class="amenity-card">
+          <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2c-2 4-5 6-5 10a5 5 0 0010 0c0-1.5-.7-2.6-1.5-3.7C14.3 6.7 13 5 12 2z"/><path d="M12 22v-4"/></svg>
+          <h4>Evening Bonfire</h4>
+          <p>Lit most nights by the caretaker, wood and all, right on the lawn.</p>
+        </div>
+        <div class="amenity-card">
+          <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 21V10l8-6 8 6v11"/><path d="M9 21v-6h6v6"/></svg>
+          <h4>Whole-Home Privacy</h4>
+          <p>Casa Vana is yours alone for the stay — no shared walls, no other guests.</p>
+        </div>
+        <div class="amenity-card">
+          <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 11l18-5v12L3 13v-2z"/><path d="M11 13v6a2 2 0 002 2"/></svg>
+          <h4>Guided Estate Walks</h4>
+          <p>Morning walks through the coffee shrubs with someone from the family.</p>
+        </div>
+        <div class="amenity-card">
+          <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M8.5 12a3.5 3.5 0 007 0"/></svg>
+          <h4>Home-Cooked Meals</h4>
+          <p>Coorg-style breakfast and dinner on request, cooked by Meera herself.</p>
+        </div>
+        <div class="amenity-card">
+          <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 12.55a11 11 0 0114 0"/><path d="M1.4 9a16 16 0 0121.2 0"/><path d="M8.5 16.4a6 6 0 017 0"/><circle cx="12" cy="20" r="1"/></svg>
+          <h4>Backup Wifi</h4>
+          <p>Fibre connection with a backup hotspot — patchy in the loft, solid downstairs.</p>
+        </div>
+        <div class="amenity-card">
+          <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7V5a2 2 0 012-2h6a2 2 0 012 2v2"/></svg>
+          <h4>On-Site Parking</h4>
+          <p>Room for two cars right by the gate, covered against the rain.</p>
+        </div>
+        <div class="amenity-card">
+          <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><circle cx="12" cy="12" r="4"/></svg>
+          <h4>Wood-Fired Water Heating</h4>
+          <p>Old-fashioned, dependable hot water — even when the power isn't.</p>
+        </div>
+        <div class="amenity-card">
+          <svg class="amenity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 4v16M4 4h11l-2 4 2 4H4"/></svg>
+          <h4>Caretaker On Call</h4>
+          <p>Someone from the estate is a short walk away for anything you need.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BOOKING ============ -->
+  <section class="booking" id="book">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Check Availability</span>
+        <h2>Tell us your dates</h2>
+        <p>Send an enquiry and we'll confirm availability and pricing directly — usually within a day.</p>
+      </div>
+      <div class="booking-grid">
+        <div class="booking-side reveal">
+          <img src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=900&q=80" alt="Casa Vana exterior in the evening">
+        </div>
+        <form class="booking-form reveal" onsubmit="event.preventDefault(); document.getElementById('form-success').style.display='block'; this.style.display='none';">
+          <div class="form-grid">
+            <div class="field">
+              <label for="checkin">Check-in</label>
+              <input type="date" id="checkin" name="checkin" required>
+            </div>
+            <div class="field">
+              <label for="checkout">Check-out</label>
+              <input type="date" id="checkout" name="checkout" required>
+            </div>
+            <div class="field">
+              <label for="guests">Guests</label>
+              <input type="number" id="guests" name="guests" min="1" max="6" placeholder="e.g. 4" required>
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="+91 00000 00000" required>
+            </div>
+            <div class="field full">
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="field full">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@email.com" required>
+            </div>
+            <div class="field full">
+              <label for="message">Anything we should know?</label>
+              <textarea id="message" name="message" rows="3" placeholder="Occasion, dietary notes, arrival time..."></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn">Send Enquiry</button>
+          <p class="form-note">This is a demo form — no booking is actually submitted.</p>
+        </form>
+        <div id="form-success" style="display:none; color:var(--vanilla); font-family:'Quicksand',sans-serif; font-size:1.2rem;">
+          Thank you — your enquiry has been noted. We'll write back shortly.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT / MAP ============ -->
+  <section class="contact" id="find-us">
+    <div class="wrap contact-grid">
+      <div class="reveal">
+        <span class="eyebrow">Find Us</span>
+        <h2 style="font-size:clamp(2.2rem,4.5vw,3.4rem); margin:0.8rem 0 1.5rem;">Off the Madikeri-Virajpet road</h2>
+        <div class="contact-list">
+          <div class="contact-item">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s7-7.2 7-12a7 7 0 10-14 0c0 4.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+            <div>
+              <h4>Address</h4>
+              <p>Casa Vana, Near Chelavara Estate Road, Kakkabe, Kodagu (Coorg), Karnataka 571254</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.7a2 2 0 01-.4 2.1L8 9.9a16 16 0 006 6l1.4-1.4a2 2 0 012.1-.4c.9.3 1.8.5 2.7.6a2 2 0 011.8 2z"/></svg></span>
+            <div>
+              <h4>Phone</h4>
+              <a href="tel:+919876543210">+91 98765 43210</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v16H4z"/><path d="M4 6l8 7 8-7"/></svg></span>
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:stay@casavana.in">stay@casavana.in</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+            <div>
+              <h4>Getting Here</h4>
+              <p>2.5 hrs from Mysuru, 5.5 hrs from Bengaluru. Last mile is a kutcha road — we'll send directions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="map-frame reveal">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=75.85%2C12.30%2C75.98%2C12.42&layer=mapnik&marker=12.36%2C75.91" title="Map showing Casa Vana location near Kakkabe, Coorg" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-logo">Casa Vana<span>A homestay in the Coorg hills</span></div>
+      <ul class="footer-nav">
+        <li><a href="#story">Story</a></li>
+        <li><a href="#stay">The Stay</a></li>
+        <li><a href="#amenities">Amenities</a></li>
+        <li><a href="#book">Book</a></li>
+        <li><a href="#find-us">Find Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Casa Vana. All rights reserved.</span>
+      <span>Kakkabe, Kodagu, Karnataka</span>
+    </div>
+  </footer>
+
+<script>
+  // Nav background on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Carousel nav buttons
+  const carousel = document.getElementById('carousel');
+  document.getElementById('carLeft').addEventListener('click', () => {
+    carousel.scrollBy({ left: -420, behavior: 'smooth' });
+  });
+  document.getElementById('carRight').addEventListener('click', () => {
+    carousel.scrollBy({ left: 420, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
